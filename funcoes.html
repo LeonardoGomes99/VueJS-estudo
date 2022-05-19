@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="Vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1 :style="myStyle" >{{ mensagem }}</h1>
+        <button v-on:click="exibeAlerta"> Clique Aqui </button>
+        <br><br>
+        <button v-on:click="mudaCor"> Muda Cor do H1 </button>
+        <br><br>
+        <button v-on:click="mudaMensagem('Novo Conteudo')"> Muda texto do H1 </button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data : {
+                mensagem: 'Essa é a minha mensagem fora da function',
+                listas: [
+                {
+                    id: 1,
+                    nome: "Leonardo",
+                    idioma: "Portugues",
+                },
+                {
+                    id: 2,
+                    nome: "Jhonatan",
+                    idioma: "Ingles",
+                },
+                {
+                    id: 3,
+                    nome: "Mateus",
+                    idioma: "Alemão",
+                },
+                ],
+                verifica: true,
+                myStyle: {
+                    color: 'red'
+                }
+            },//fimdata
+            methods: {
+                exibeAlerta: function(){
+                    var mensagem = 'Essa é a mensagem dentro da function'
+                    alert(this.mensagem) 
+                },
+
+                mudaCor: function(){                    
+                    this.verifica ? this.myStyle = {color: 'blue'} : this.myStyle = {color : 'red'}
+                    this.verifica = !this.verifica;
+                },
+
+                mudaMensagem: function( param ){
+                    this.mensagem = param
+                },
+            },//fimmethods
+        });
+    </script>
+</body>
+</html>

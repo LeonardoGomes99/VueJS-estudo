@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="Vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{mensagem}}</h1>
+        <header-component></header-component>
+        <artigos-component
+        v-for="user in users"
+        v-bind:user="user"
+        v-bind:key="user.id"
+        />
+    </div>
+    <script>
+        Vue.component('header-component', { template: '<h1> meu cabeçalho </h1> '});
+        Vue.component('artigos-component', 
+        {
+        props:['user'],
+        template: '<li>{{ user.text }}</li>' 
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data : {
+                mensagem: 'Essa é a minha mensagem',
+                users: [
+                    {  id:1, text: 'Leo' },
+                    {  id:2, text: 'Jho' },
+                    {  id:3, text: 'Mat' },
+                ]
+            },//fimdata
+
+            methods: {
+                onLoadPage: function(){
+                    alert( this.mensagem);
+                }
+            },//fimmethods
+        });
+    </script>
+</body>
+</html>
